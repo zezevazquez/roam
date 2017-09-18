@@ -6,6 +6,7 @@ app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 
 // use middleware
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   res.render('splash')
