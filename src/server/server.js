@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 
+
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 
@@ -12,6 +13,10 @@ app.get('/', (req, res) => {
 
 app.get('/signup', (req, res) => {
   res.render('signup')
+})
+
+app.post('/signup', (req, res) => {
+
 })
 
 app.get('/login', (req, res) => {
