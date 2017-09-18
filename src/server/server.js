@@ -1,15 +1,25 @@
 const express = require('express')
 const app = express()
 
-//serve static files
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 
-// use middleware
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   res.render('splash')
+})
+
+app.get('/signup', (req, res) => {
+  res.render('signup')
+})
+
+app.get('/login', (req, res) => {
+  res.render('login')
+})
+
+app.get('/users/:id', (req, res) => {
+  res.render('profile')
 })
 
 const port = process.env.PORT || 3003
