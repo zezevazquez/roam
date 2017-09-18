@@ -3,7 +3,7 @@ const app = express()
 
 //serve static files
 app.set('view engine', 'ejs')
-app.set('view', __dirname + 'views')
+app.set('views', __dirname + '/views')
 
 // use middleware
 
