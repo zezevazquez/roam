@@ -1,15 +1,14 @@
 const express = require('express')
+const middleware = require('./server/middleware')
+const routes = require('./server/routes/index')
+
 const app = express()
 
-//serve static files
 app.set('view engine', 'ejs')
-app.set('view', __dirname + 'views')
+app.set('views', __dirname + '/views')
 
-// use middleware
-
-app.get('/', (req, res) => {
-  res.render('splash')
-})
+app.use('/', middleware)
+app.use('/', routes)
 
 const port = process.env.PORT || 3003
 app.listen(port, () => {
