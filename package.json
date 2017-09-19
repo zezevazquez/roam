@@ -2,7 +2,7 @@
   "name": "roam",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server/server.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "node src/server/server.js",
     "db:start": "createdb roam && npm run load_schema",
@@ -21,9 +21,11 @@
   },
   "homepage": "https://github.com/zezevazquez/roam#readme",
   "dependencies": {
+    "body-parser": "^1.18.1",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
+    "express-session": "^1.15.5",
     "node-pg-migrate": "^2.9.0",
     "pg-promise": "^6.7.1"
   }
