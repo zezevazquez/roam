@@ -11,6 +11,12 @@ const createUser = (email, password) => {
   `, [email, password])
 }
 
+// const findUserByEmail = (email, password) => {
+//   return db.query(`
+//     SELECT email, password
+//   `)
+// }
+
 module.exports = {
   createUser
 }
