@@ -9,6 +9,7 @@ router.use(express.static('public'))
 
 router.use((request, response, next) => {
   response.locals.error = ''
+  response.locals.user = {}
   next()
 })
 

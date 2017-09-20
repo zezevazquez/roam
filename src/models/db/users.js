@@ -22,7 +22,18 @@ const findUserByEmail = (email, password) => {
       email=$1 AND password=$2`, [email, password])
 }
 
+const findUserProfile = (userId) => {
+  return db.query(`
+    SELECT
+      *
+    FROM
+      users
+    WHERE
+      id=$1`, [userId])
+}
+
 module.exports = {
   createUser,
-  findUserByEmail
+  findUserByEmail,
+  findUserProfile
 }

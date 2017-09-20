@@ -1,7 +1,10 @@
-const { createUser, findUserByEmail } = require('./db/users')
+const { createUser, findUserByEmail, findUserProfile } = require('./db/users')
 
 const signupUser = (email, password) => {
   return createUser(email, password)
+  .then((user) => {
+    return user[0]
+  })
 }
 
 const loginUser = (email, password) => {
@@ -10,12 +13,20 @@ const loginUser = (email, password) => {
     if (userInfo.length === 0) {
       return false
     } else {
-      return userInfo
+      return userInfo[0]
     }
+  })
+}
+
+const userProfile = (userId) => {
+  return findUserProfile(userId)
+  .then((user) => {
+    return user[0]
   })
 }
 
 module.exports = {
   signupUser,
-  loginUser
+  loginUser,
+  userProfile
 }

@@ -2,18 +2,21 @@
 
 ## Specifications
 
+#### Wireframes
+![wireframes](https://cloud.githubusercontent.com/assets/3010270/25254113/c2660cca-25d8-11e7-9a1b-22c254e9b75f.png)
+
 #### Sprint 1: Basic Auth & Profiles
 
 **A user should be able to:**
 
-- [ ] Navigate to "/" and see a basic splash page.
-- [ ] See the name of the website on the splash page.
-- [ ] See links to "Log In" and "Sign Up" on the splash page.
-- [ ] Sign up for an account.
-- [ ] Log in to their account if they already have one.
-- [ ] Be redirected to their public profile page after logging in.
-- [ ] On their public profile page, see their name, the current city they have set in their profile, and their join date.
-- [ ] See the site-wide header on every page.
+- [x] Navigate to "/" and see a basic splash page.
+- [x] See the name of the website on the splash page.
+- [x] See links to "Log In" and "Sign Up" on the splash page.
+- [x] Sign up for an account.
+- [x] Log in to their account if they already have one.
+- [x] Be redirected to their public profile page after logging in.
+- [x] On their public profile page, see their name, the current city they have set in their profile, and their join date.
+- [x] See the site-wide header on every page.
 - [ ] See a link to "Log Out" if they're logged in in the site-wide header.
 - [ ] See links to "Log In" and "Sign Up" if they're logged out in the site-wide header.
 - [ ] Update their profile by making changes to their name and/or current city.

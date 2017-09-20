@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { signupUser, loginUser } = require('../../models/users')
+const { signupUser, loginUser, userProfile } = require('../../models/users')
 
 
 router.get('/', (req, res) => {
@@ -12,15 +12,13 @@ router.get('/signup', (req, res) => {
 
 router.post('/signup', (req, res) => {
   const { email, password, confirm_password } = req.body
-
   if (password !== confirm_password) {
     res.render('signup', {error: 'Passwords don\'t match'})
   } else {
     signupUser(email, password)
-    .then(() => {
-      res.redirect('/users/:id')
+    .then((userObj) => {
+      res.redirect(`/users/${userObj.id}`)
     })
-
   }
 })
 
@@ -35,16 +33,33 @@ router.post('/login', (req, res) => {
     if (user === false) {
       res.render('login', {error: 'Incorrect login info'})
     } else {
-      req.session.name = user[0].id
-      res.redirect(`/users/${user[0].id}`)
+      req.session.name = user.id
+      res.redirect(`/users/${user.id}`)
     }
   })
 })
 
 router.get('/users/:id', (req, res) => {
   userId = req.params.id
-  console.log('INSIDE GET ROUTE /users/:id ::::', userId)
-  res.render('profile')
+  return userProfile(userId)
+  .then((user) => {
+    res.render('profile', {user, edit: false})
+  })
 })
 
+router.get('/users/edit/:id', (req, res) => {
+  userId = req.params.id
+  return userProfile(userId)
+  .then((user) => {
+    res.render('profile', {user, edit: true})
+  })
+})
+
+router.post('/users/edit/:id', (req, res) => {
+  userId = req.params.id
+  return userProfile(userId)
+  .then((user) => {
+    res.render('profile', {user})
+  })
+})
 module.exports = router
