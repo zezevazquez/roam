@@ -12,4 +12,13 @@ router.use((request, response, next) => {
   next()
 })
 
+router.use(expressSession({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: 600000
+    }
+}))
+
 module.exports = router

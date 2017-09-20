@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { signupUser } = require('../../models/users')
+const { signupUser, loginUser } = require('../../models/users')
 
 
 router.get('/', (req, res) => {
@@ -30,11 +30,20 @@ router.get('/login', (req, res) => {
 
 router.post('/login', (req, res) => {
   const { email, password } = req.body
-  res.render('login')
+  return loginUser(email, password)
+  .then((user) => {
+    if (user === false) {
+      res.render('login', {error: 'Incorrect login info'})
+    } else {
+      req.session.name = user[0].id
+      res.redirect(`/users/${user[0].id}`)
+    }
+  })
 })
 
 router.get('/users/:id', (req, res) => {
-  contactId = req.params.id
+  userId = req.params.id
+  console.log('INSIDE GET ROUTE /users/:id ::::', userId)
   res.render('profile')
 })
 

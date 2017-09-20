@@ -11,12 +11,18 @@ const createUser = (email, password) => {
   `, [email, password])
 }
 
-// const findUserByEmail = (email, password) => {
-//   return db.query(`
-//     SELECT email, password
-//   `)
-// }
+const findUserByEmail = (email, password) => {
+  console.log('inside db function findUserByEmail', email, password)
+  return db.query(`
+    SELECT
+      id, email, password
+    FROM
+      users
+    WHERE
+      email=$1 AND password=$2`, [email, password])
+}
 
 module.exports = {
-  createUser
+  createUser,
+  findUserByEmail
 }
