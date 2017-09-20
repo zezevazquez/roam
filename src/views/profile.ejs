@@ -13,10 +13,10 @@
   <h3>Edit Profile</h3>
   <form action="<%= user.id %>" method="POST" >
     <label for="name">Name: </label>
-    <input type="text" name="name" value="<%user.name%>">
+    <input type="text" name="name" value="<%=user.name%>">
     <br>
     <label for="current_city">Current City: </label>
-    <input type="text" name="current_city" value="<%user.current_city%>">
+    <input type="text" name="current_city" value="<%=user.current_city%>">
     <br>
     <button type="submit" name="save-submit">Save Changes</button>
   </form>

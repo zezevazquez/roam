@@ -32,8 +32,22 @@ const findUserProfile = (userId) => {
       id=$1`, [userId])
 }
 
+const updateUserProfile = (userId, name, currentCity) => {
+  return db.query(`
+    UPDATE
+      users
+    SET
+      name = $2,
+      current_city = $3
+    WHERE
+      id = $1;
+    `, [userId, name, currentCity])
+
+}
+
 module.exports = {
   createUser,
   findUserByEmail,
-  findUserProfile
+  findUserProfile,
+  updateUserProfile
 }

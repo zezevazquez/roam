@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { signupUser, loginUser, userProfile } = require('../../models/users')
+const { signupUser, loginUser, userProfile, updateUser } = require('../../models/users')
 
 
 router.get('/', (req, res) => {
@@ -57,9 +57,10 @@ router.get('/users/edit/:id', (req, res) => {
 
 router.post('/users/edit/:id', (req, res) => {
   userId = req.params.id
-  return userProfile(userId)
+  const {name, current_city} = req.body
+  return updateUser(userId, name, current_city)
   .then((user) => {
-    res.render('profile', {user})
+    res.redirect(`/users/${userId}`)
   })
 })
 module.exports = router

@@ -1,4 +1,4 @@
-const { createUser, findUserByEmail, findUserProfile } = require('./db/users')
+const { createUser, findUserByEmail, findUserProfile, updateUserProfile } = require('./db/users')
 
 const signupUser = (email, password) => {
   return createUser(email, password)
@@ -25,8 +25,13 @@ const userProfile = (userId) => {
   })
 }
 
+const updateUser = (userId, name, current_city) => {
+  return updateUserProfile(userId, name, current_city)
+}
+
 module.exports = {
   signupUser,
   loginUser,
-  userProfile
+  userProfile,
+  updateUser
 }
