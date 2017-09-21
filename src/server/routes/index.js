@@ -47,14 +47,6 @@ router.get('/logout', (req, response) => {
 })
 
 router.get('/users/:id', (req, res) => {
-  console.log('inside of id', req.session.user)
-  if (req.session.user) {
-    userId = req.session.user
-    return userProfile(userId)
-    .then((user) => {
-      res.render('profile', {user, edit: false})
-    })
-  }
   userId = req.params.id
   return userProfile(userId)
   .then((user) => {
