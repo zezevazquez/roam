@@ -3,11 +3,11 @@ const { signupUser, loginUser, userProfile, updateUser } = require('../../models
 
 
 router.get('/', (req, res) => {
-  res.render('splash')
+  res.render('splash', {user: req.session.user})
 })
 
 router.get('/signup', (req, res) => {
-  res.render('signup')
+  res.render('signup', { user: req.session.user || null, message: '' })
 })
 
 router.post('/signup', (req, res) => {
@@ -23,7 +23,7 @@ router.post('/signup', (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-  res.render('login')
+  res.render('login', { user: req.session.user || null , message: '' })
 })
 
 router.post('/login', (req, res) => {
@@ -33,9 +33,15 @@ router.post('/login', (req, res) => {
     if (user === false) {
       res.render('login', {error: 'Incorrect login info'})
     } else {
-      req.session.name = user.id
+      req.session.user = user.id
       res.redirect(`/users/${user.id}`)
     }
+  })
+})
+
+router.get('/logout', (req, response) => {
+  req.session.destroy(() => {
+    response.redirect('/')
   })
 })
 
@@ -59,7 +65,7 @@ router.post('/users/edit/:id', (req, res) => {
   userId = req.params.id
   const {name, current_city} = req.body
   return updateUser(userId, name, current_city)
-  .then((user) => {
+  .then(() => {
     res.redirect(`/users/${userId}`)
   })
 })

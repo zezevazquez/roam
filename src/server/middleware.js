@@ -18,8 +18,11 @@ router.use(expressSession({
   resave: false,
   saveUninitialized: true,
   cookie: {
-    expires: 600000
+    expires: 600000,
+    secure: true
     }
 }))
+
+
 
 module.exports = router

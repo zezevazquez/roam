@@ -12,7 +12,6 @@ const createUser = (email, password) => {
 }
 
 const findUserByEmail = (email, password) => {
-  console.log('inside db function findUserByEmail', email, password)
   return db.query(`
     SELECT
       id, email, password
@@ -42,7 +41,6 @@ const updateUserProfile = (userId, name, currentCity) => {
     WHERE
       id = $1;
     `, [userId, name, currentCity])
-
 }
 
 module.exports = {
