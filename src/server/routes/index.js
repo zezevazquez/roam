@@ -17,6 +17,7 @@ router.post('/signup', (req, res) => {
   } else {
     signupUser(email, password)
     .then((userObj) => {
+      req.session.user = userObj.id
       res.redirect(`/users/${userObj.id}`)
     })
   }
@@ -47,6 +48,7 @@ router.get('/logout', (req, response) => {
 
 router.get('/users/:id', (req, res) => {
   userId = req.params.id
+  req.session.user = userId
   return userProfile(userId)
   .then((user) => {
     res.render('profile', {user, edit: false})

@@ -18,8 +18,7 @@ router.use(expressSession({
   resave: false,
   saveUninitialized: true,
   cookie: {
-    expires: 600000,
-    secure: true
+    expires: 600000
     }
 }))
 
