@@ -21,7 +21,8 @@ const findUserByEmail = (email, password) => {
       email=$1 AND password=$2`, [email, password])
 }
 
-const findUserProfile = (userId) => {
+
+const findUserById = (userId) => {
   return db.query(`
     SELECT
       *
@@ -43,9 +44,33 @@ const updateUserProfile = (userId, name, currentCity) => {
     `, [userId, name, currentCity])
 }
 
+const postByUser = (userId) => {
+  return db.query(`
+    SELECT
+      *
+    FROM
+      posts
+    WHERE
+      user_id=$1;
+  `, [userId])
+}
+
+const postById = (postId) => {
+  return db.query(`
+    SELECT
+      *
+    FROM
+      posts
+    WHERE
+      id=$1;
+  `, [postId])
+}
+
 module.exports = {
   createUser,
   findUserByEmail,
-  findUserProfile,
-  updateUserProfile
+  findUserById,
+  updateUserProfile,
+  postByUser,
+  postById
 }

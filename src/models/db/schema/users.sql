@@ -5,19 +5,15 @@ CREATE TABLE users(
   password VARCHAR(100) NOT NULL,
   name VARCHAR(100),
   current_city VARCHAR(100),
-  join_date DATE DEFAULT current_timestamp
+  join_date TIMESTAMP DEFAULT current_timestamp
 );
 
 DROP TABLE IF EXISTS posts;
 CREATE TABLE posts(
   id SERIAL PRIMARY KEY,
-  description LONGTEXT NOT NULL,
+  user_id INTEGER,
+  description TEXT NOT NULL,
   city VARCHAR(100),
-  title VARCHAR(100)
-);
-
-DROP TABLE IF EXISTS city;
-CREATE TABLE city(
-  id SERIAL PRIMARY KEY,
-  city VARCHAR(100)
+  title VARCHAR(100),
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );

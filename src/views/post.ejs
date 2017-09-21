@@ -1,0 +1,12 @@
+<%- include partials/header %>
+<%- include partials/navbar %>
+
+<div>
+    <a href="/post/<%= post.id %>"><h1><%=post.city%></h1></a>
+    <h2>Author: <%=user.name%></h2>
+    <span><%=post.title%></span>
+    <span><%=post.description%></span>
+    <br></br>
+</div>
+
+<% include partials/footer %>

@@ -1,12 +1,12 @@
 <%- include partials/header %>
 <%- include partials/navbar %>
 
-<h1>Yolo <small>fomo</small></h1>
+<h1>WOW, you have a neat profile, <%=user.name%>!</h1>
 <br>
-<h1>Email: <%=user.email%></h1>
-<h1>ID: <%=user.id%></h1>
-<h1>Password: <%=user.password%></h1>
-<h1>Join Date: <%=user.join_date%></h1>
+<h2>Email: <%=user.email%></h2>
+<h2>ID: <%=user.id%></h2>
+<h2>Password: <%=user.password%></h2>
+<h2>Join Date: <%=user.join_date%></h2>
 
 <% if(edit) { %>
   <br>
@@ -21,11 +21,20 @@
     <button type="submit" name="save-submit">Save Changes</button>
   </form>
 <% } else { %>
-  <h1>Name: <%=user.name%></h1>
-  <h1>Current City: <%=user.current_city%></h1>
+  <h2>Name: <%=user.name%></h2>
+  <h2>Current City: <%=user.current_city%></h2>
   <form action="edit/<%= user.id %>" method="GET" >
     <button type="submit" name="edit-submit">Edit Profile</button>
   </form>
 <% } %>
+
+<div>
+  <% posts.forEach((post) => { %>
+    <a href="/post/<%= post.id %>"><h1><%=post.city%></h1></a>
+    <span><%=post.title%></span>
+    <span><%=post.description%></span>
+    <br></br>
+  <% }) %>
+</div>
 
 <% include partials/footer %>

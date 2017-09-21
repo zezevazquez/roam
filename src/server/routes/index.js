@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { signupUser, loginUser, userProfile, updateUser } = require('../../models/users')
+const { signupUser, loginUser, userProfile, updateUser, userPost, findPost } = require('../../models/users')
 
 
 router.get('/', (req, res) => {
@@ -50,7 +50,10 @@ router.get('/users/:id', (req, res) => {
   userId = req.params.id
   return userProfile(userId)
   .then((user) => {
-    res.render('profile', {user, edit: false})
+    return userPost(user.id)
+    .then((posts) => {
+      res.render('profile', {user, edit: false, posts})
+    })
   })
 })
 
@@ -70,4 +73,16 @@ router.post('/users/edit/:id', (req, res) => {
     res.redirect(`/users/${userId}`)
   })
 })
+
+router.get('/post/:id', (req, res) => {
+  postId = req.params.id
+  return findPost(postId)
+  .then((post) => {
+    return userProfile(post.user_id)
+    .then((user) => {
+      res.render('post', {post, user})
+    })
+  })
+})
+
 module.exports = router
