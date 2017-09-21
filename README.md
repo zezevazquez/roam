@@ -17,8 +17,8 @@
 - [x] Be redirected to their public profile page after logging in.
 - [x] On their public profile page, see their name, the current city they have set in their profile, and their join date.
 - [x] See the site-wide header on every page.
-- [ ] See a link to "Log Out" if they're logged in in the site-wide header.
-- [ ] See links to "Log In" and "Sign Up" if they're logged out in the site-wide header.
+- [x] See a link to "Log Out" if they're logged in in the site-wide header.
+- [x] See links to "Log In" and "Sign Up" if they're logged out in the site-wide header.
 - [x] Update their profile by making changes to their name and/or current city.
 - [ ] See the titles of all the posts they've contributed (start with pre-seeded data).
 - [ ] Click on the title of one of their posts and be redirected to a "show" page for that post.

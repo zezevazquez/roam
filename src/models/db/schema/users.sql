@@ -7,3 +7,17 @@ CREATE TABLE users(
   current_city VARCHAR(100),
   join_date DATE DEFAULT current_timestamp
 );
+
+DROP TABLE IF EXISTS posts;
+CREATE TABLE posts(
+  id SERIAL PRIMARY KEY,
+  description LONGTEXT NOT NULL,
+  city VARCHAR(100),
+  title VARCHAR(100)
+);
+
+DROP TABLE IF EXISTS city;
+CREATE TABLE city(
+  id SERIAL PRIMARY KEY,
+  city VARCHAR(100)
+);
