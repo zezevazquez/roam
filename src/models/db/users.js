@@ -6,19 +6,20 @@ const createUser = (email, password) => {
       users (email, password)
     VALUES
       ($1::text, $2::text)
-    RETURNING *
-
+    RETURNING
+      *
   `, [email, password])
 }
 
 const findUserByEmail = (email, password) => {
   return db.query(`
     SELECT
-      id, email, password
+      *
     FROM
       users
     WHERE
-      email=$1 AND password=$2`, [email, password])
+      email=$1 AND password=$2
+  `, [email, password])
 }
 
 
@@ -29,7 +30,8 @@ const findUserById = (userId) => {
     FROM
       users
     WHERE
-      id=$1`, [userId])
+      id=$1
+  `, [userId])
 }
 
 const updateUserProfile = (userId, name, currentCity) => {
@@ -41,17 +43,21 @@ const updateUserProfile = (userId, name, currentCity) => {
       current_city = $3
     WHERE
       id = $1;
-    `, [userId, name, currentCity])
+  `, [userId, name, currentCity])
 }
 
 const postByUser = (userId) => {
   return db.query(`
     SELECT
-      *
+      posts.*, cities.name
     FROM
       posts
+    INNER JOIN
+      cities
+      ON
+      posts.city_id = cities.id
     WHERE
-      user_id=$1;
+      posts.user_id=$1;
   `, [userId])
 }
 
@@ -88,6 +94,19 @@ const cityPost = (city_id) => {
   `, [city_id])
 }
 
+const createPost = (title, description, city_id, user_id) => {
+  return db.query(`
+    INSERT INTO
+      posts (title, description, city_id, user_id)
+    VALUES
+      ($1::text, $2::text, $3::INTEGER, $4::INTEGER)
+    RETURNING
+      *
+  `, [title, description, city_id, user_id])
+}
+
+
+
 module.exports = {
   createUser,
   findUserByEmail,
@@ -96,5 +115,6 @@ module.exports = {
   postByUser,
   postById,
   cityById,
-  cityPost
+  cityPost,
+  createPost
 }

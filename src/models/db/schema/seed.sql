@@ -7,8 +7,13 @@ INSERT INTO cities(image,name) VALUES ('https://cdn.vox-cdn.com/thumbor/RVhobHgN
 INSERT INTO cities(image,name) VALUES ('https://i.ytimg.com/vi/lt0WQ8JzLz4/maxresdefault.jpg','Space');
 INSERT INTO cities(image,name) VALUES ('https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200','New York');
 INSERT INTO cities(image,name) VALUES ('https://media.timeout.com/images/103042848/image.jpg','London');
-INSERT INTO posts(description,user_id,city_id,title) VALUES ('London, the capital of England and the United Kingdom, is a 21st-century city with history stretching back to Roman times. At its centre stand the imposing Houses of Parliament, the iconic ‘Big Ben’ clock tower and Westminster Abbey, site of British monarch coronations. Across the Thames River, the London Eye observation wheel provides panoramic views of the South Bank cultural complex, and the entire city.','1','5','London Fog');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('London, the capital of England and the United Kingdom.','1','5','London Fog');
 INSERT INTO posts(description,user_id,city_id,title) VALUES ('SF, the best city ever. Besides Oakland.','1','2','Karl the Fog');
 INSERT INTO posts(description,user_id,city_id,title) VALUES ('New York New York New York New York New York New York New York New York New York New York New York','2','4','New York New York');
 INSERT INTO posts(description,user_id,city_id,title) VALUES ('The new frontier. Or something...','3','3','A wrinkle in time');
 INSERT INTO posts(description,user_id,city_id,title) VALUES ('Oakland is soooo awesome!','4','1','East Bay for Life');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('So many less words','2','5','London Tea');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('SF stufffff','4','2','SF is Neat');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('New York New York New York New York','1','4','Big Apple');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('ROCKETS AND SHIPS IN SPACE!!','4','3','STARS!');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('Meow meow meow','3','1','Go to Heart and Dagger');

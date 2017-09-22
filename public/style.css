@@ -2,3 +2,34 @@
   height: 100%;
   width: 100%;
 }
+
+#block {
+    background: lightgray;
+    border: solid black 2px;
+    height: 0px;
+    overflow: hidden;
+    -webkit-transition: height 300ms linear;
+    -moz-transition: height 300ms linear;
+    -o-transition: height 300ms linear;
+    transition: height 300ms linear;
+}
+
+label {
+    cursor: pointer;
+}
+
+#showblock {
+    display: none;
+}
+
+#showblock:checked + #block {
+    height: 300px;
+}
+
+.new-form {
+  padding: 5px
+}
+
+.post-feed {
+    float: right;
+}

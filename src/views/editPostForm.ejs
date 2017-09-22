@@ -1,0 +1,22 @@
+<%- include partials/header %>
+<%- include partials/navbar %>
+
+<div>
+  <form class="new-form" action="<%= city.id %>" method="POST" >
+    <label for="name"><h2><%=city.name%></h2></label>
+    <br>
+    <label for="title">Title: </label>
+    <input type="text" name="title">
+    <br>
+    <label for="description">Description: </label>
+    <input type="text" name="description">
+    <br>
+    <input type="text" name="city_id" value="<%=city.id%>" hidden>
+    <br>
+    <input type="text" name="user_id" value="<%=user.id%>" hidden>
+    <br>
+    <button type="submit">Submit Post</button>
+  </form>
+</div>
+
+<% include partials/footer %>

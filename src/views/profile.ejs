@@ -29,12 +29,20 @@
 <% } %>
 
 <div>
-  <% posts.forEach((post) => { %>
-    <a href="/post/<%= post.id %>"><h1><%=post.city%></h1></a>
-    <span><%=post.title%></span>
-    <span><%=post.description%></span>
-    <br></br>
-  <% }) %>
+  <div class="post-feed">
+    <% posts.forEach((post) => { %>
+      <a href="/post/<%= post.id %>"><h1><%=post.title%></h1></a>
+      <br>
+      <span>City: <%=post.name%></span>
+      <br>
+      <span>Description: <%=post.description%></span>
+      <br></br>
+      <form action="/post/edit/<%= post.id %>" method="GET" >
+        <button type="submit" name="edit-submit" class="fa fa-pencil"></button>
+      </form>
+      <button class="fa fa-trash"></button>
+    <% }) %>
+  </div>
 </div>
 
 <% include partials/footer %>

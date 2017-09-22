@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const { signupUser, loginUser, userProfile, updateUser, userPost, findPost, findCity, postsByCity } = require('../../models/users')
+const { signupUser, loginUser, userProfile, updateUser, userPost, findPost, findCity, postsByCity, createNewPost } = require('../../models/users')
 
 
 router.get('/', (req, res) => {
-  console.log(req.session.user)
+  // console.log(req.session.user)
   res.render('splash', {user: req.session.user})
 })
 
@@ -17,9 +17,9 @@ router.post('/signup', (req, res) => {
     res.render('signup', {error: 'Passwords don\'t match'})
   } else {
     signupUser(email, password)
-    .then((userObj) => {
-      req.session.user = userObj.id
-      res.redirect(`/users/${userObj.id}`)
+    .then((user) => {
+      req.session.user = user
+      res.redirect(`/users/${user.id}`)
     })
   }
 })
@@ -35,7 +35,7 @@ router.post('/login', (req, res) => {
     if (user === false) {
       res.render('login', {error: 'Incorrect login info'})
     } else {
-      req.session.user = user.id
+      req.session.user = user
       res.redirect(`/users/${user.id}`)
     }
   })
@@ -49,20 +49,24 @@ router.get('/logout', (req, response) => {
 
 router.get('/users/:id', (req, res) => {
   userId = req.params.id
-  return userProfile(userId)
-  .then((user) => {
-    return userPost(user.id)
-    .then((posts) => {
-      res.render('profile', {user: req.session.user, edit: false, posts})
+  if (req.session.user === undefined) {
+    res.redirect('/login')
+  } else {
+    return userProfile(userId)
+    .then((user) => {
+      return userPost(user.id)
+      .then((posts) => {
+        res.render('profile', {user: req.session.user, edit: false, posts})
+      })
     })
-  })
+  }
 })
 
 router.get('/users/edit/:id', (req, res) => {
   userId = req.params.id
   return userProfile(userId)
   .then((user) => {
-    res.render('profile', {user, edit: true})
+    res.render('profile', {user, edit: true, posts: []})
   })
 })
 
@@ -86,13 +90,52 @@ router.get('/post/:id', (req, res) => {
   })
 })
 
+
+
+
+
+
+router.get('/post/edit/:id', (req, res) => {
+  postId = req.params.id
+  return findPost(postId)
+  .then((post) => {
+    res.render('editPostForm', {post, user:req.session.user})
+  })
+})
+
+router.post('/post/edit/:id', (req, res) => {
+  userId = req.params.id
+  const {name, current_city} = req.body
+  return updateUser(userId, name, current_city)
+  .then(() => {
+    res.redirect(`/users/${userId}`)
+  })
+})
+
+
+
+
+
+
 router.get('/city/:id', (req, res) => {
   cityId = req.params.id
   return findCity(cityId)
   .then((city) => {
     return postsByCity(city.id)
     .then((posts) => {
-      res.render('city', {city, posts})
+      // send session user in as object
+      res.render('city', {city, posts, user:req.session.user})
+    })
+  })
+})
+
+router.post('/city/:id', (req, res) => {
+  const {title, description, city_id, user_id} = req.body
+  return createNewPost(title, description, city_id, user_id)
+  .then((post) => {
+    return userProfile(post.user_id)
+    .then((user) => {
+      res.render('post', {post, user:req.session.user})
     })
   })
 })

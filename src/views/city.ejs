@@ -2,14 +2,38 @@
 <%- include partials/navbar %>
 
 <div>
-    <h1><%=city.name%></h1>
-    <img href="<%= city.image %>" alt="<%=city.name%>"></img>
-
+  <div>
+    <label for="showblock">Add New Post</label>
+    <input type="checkbox" id="showblock" />
+    <div id="block">
+      <form class="new-form" action="<%= city.id %>" method="POST" >
+        <label for="name"><h2><%=city.name%></h2></label>
+        <br>
+        <label for="title">Title: </label>
+        <input type="text" name="title">
+        <br>
+        <label for="description">Description: </label>
+        <input type="text" name="description">
+        <br>
+        <input type="text" name="city_id" value="<%=city.id%>" hidden>
+        <br>
+        <input type="text" name="user_id" value="<%=user.id%>" hidden>
+        <br>
+        <button type="submit">Submit Post</button>
+      </form>
+    </div>
+  </div>
+  <h1><%=city.name%>, what a place!</h1>
+  <img src="<%= city.image %>" alt="<%=city.name%>" height="42%" width="42%"></img>
+  <div style="float: right">
+    <h1>Posts on <%= city.name %></h1>
     <% posts.forEach((post) => { %>
-      <span><a href="/post/<%= post.id %>"<%=post.title%></span>
+      <span><a href="/post/<%= post.id %>"><%=post.title%></a></span>
+      <br>
       <span><%=post.description%></span>
       <br></br>
     <% }) %>
+  </div>
 </div>
 
 <% include partials/footer %>
