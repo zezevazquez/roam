@@ -2,7 +2,13 @@ INSERT INTO users(email,password,name,current_city) VALUES ('foil@Al.com','a','A
 INSERT INTO users(email,password,name,current_city) VALUES ('gold@Au.com','a','Gold Karats','San Francisco');
 INSERT INTO users(email,password,name,current_city) VALUES ('iron@Fe.com','a','Tony Stark','New York');
 INSERT INTO users(email,password,name,current_city) VALUES ('silver@Ag.com','a','Norrin Radd','Space');
-INSERT INTO posts(description,user_id,city,title) VALUES ('London, the capital of England and the United Kingdom, is a 21st-century city with history stretching back to Roman times. At its centre stand the imposing Houses of Parliament, the iconic ‘Big Ben’ clock tower and Westminster Abbey, site of British monarch coronations. Across the Thames River, the London Eye observation wheel provides panoramic views of the South Bank cultural complex, and the entire city.','1','London','London Fog');
-INSERT INTO posts(description,user_id,city,title) VALUES ('SF, the best city ever. Besides Oakland.','1','San Francisco','Karl the Fog');
-INSERT INTO posts(description,user_id,city,title) VALUES ('New York New York New York New York New York New York New York New York New York New York New York','2','New York','New York New York');
-INSERT INTO posts(description,user_id,city,title) VALUES ('The new frontier. Or something...','3','Space','A wrinkle in time');
+INSERT INTO cities(image,name) VALUES ('http://williamzhang.com/var/albums/North-America/USA/California/Bay-Area-/Oakland/Lake-Merritt/USCAOLLM006.jpg?m=1377150426','Oakland');
+INSERT INTO cities(image,name) VALUES ('https://cdn.vox-cdn.com/thumbor/RVhobHgNC4xy7NSqXvVs13OdJIk=/0x0:4000x4000/1200x800/filters:focal(1680x1680:2320x2320)/cdn.vox-cdn.com/uploads/chorus_image/image/55649931/IM_Photo5.0.jpg','San Francisco');
+INSERT INTO cities(image,name) VALUES ('https://i.ytimg.com/vi/lt0WQ8JzLz4/maxresdefault.jpg','Space');
+INSERT INTO cities(image,name) VALUES ('https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200','New York');
+INSERT INTO cities(image,name) VALUES ('https://media.timeout.com/images/103042848/image.jpg','London');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('London, the capital of England and the United Kingdom, is a 21st-century city with history stretching back to Roman times. At its centre stand the imposing Houses of Parliament, the iconic ‘Big Ben’ clock tower and Westminster Abbey, site of British monarch coronations. Across the Thames River, the London Eye observation wheel provides panoramic views of the South Bank cultural complex, and the entire city.','1','5','London Fog');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('SF, the best city ever. Besides Oakland.','1','2','Karl the Fog');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('New York New York New York New York New York New York New York New York New York New York New York','2','4','New York New York');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('The new frontier. Or something...','3','3','A wrinkle in time');
+INSERT INTO posts(description,user_id,city_id,title) VALUES ('Oakland is soooo awesome!','4','1','East Bay for Life');

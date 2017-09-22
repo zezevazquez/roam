@@ -1,0 +1,15 @@
+<%- include partials/header %>
+<%- include partials/navbar %>
+
+<div>
+    <h1><%=city.name%></h1>
+    <img href="<%= city.image %>" alt="<%=city.name%>"></img>
+
+    <% posts.forEach((post) => { %>
+      <span><a href="/post/<%= post.id %>"<%=post.title%></span>
+      <span><%=post.description%></span>
+      <br></br>
+    <% }) %>
+</div>
+
+<% include partials/footer %>

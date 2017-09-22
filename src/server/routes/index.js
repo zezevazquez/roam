@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { signupUser, loginUser, userProfile, updateUser, userPost, findPost } = require('../../models/users')
+const { signupUser, loginUser, userProfile, updateUser, userPost, findPost, findCity, postsByCity } = require('../../models/users')
 
 
 router.get('/', (req, res) => {
@@ -76,13 +76,23 @@ router.post('/users/edit/:id', (req, res) => {
 })
 
 router.get('/post/:id', (req, res) => {
-  console.log('inside of post/:id',req.session.user)
   postId = req.params.id
   return findPost(postId)
   .then((post) => {
     return userProfile(post.user_id)
     .then((user) => {
       res.render('post', {post, user:req.session.user})
+    })
+  })
+})
+
+router.get('/city/:id', (req, res) => {
+  cityId = req.params.id
+  return findCity(cityId)
+  .then((city) => {
+    return postsByCity(city.id)
+    .then((posts) => {
+      res.render('city', {city, posts})
     })
   })
 })

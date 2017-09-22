@@ -66,11 +66,35 @@ const postById = (postId) => {
   `, [postId])
 }
 
+const cityById = (city_id) => {
+  return db.query(`
+    SELECT
+      *
+    FROM
+      cities
+    WHERE
+      id=$1;
+  `, [city_id])
+}
+
+const cityPost = (city_id) => {
+  return db.query(`
+    SELECT
+      *
+    FROM
+      posts
+    WHERE
+      city_id=$1;
+  `, [city_id])
+}
+
 module.exports = {
   createUser,
   findUserByEmail,
   findUserById,
   updateUserProfile,
   postByUser,
-  postById
+  postById,
+  cityById,
+  cityPost
 }

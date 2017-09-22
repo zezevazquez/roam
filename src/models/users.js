@@ -1,4 +1,4 @@
-const { createUser, findUserByEmail, findUserById, updateUserProfile, postByUser, postById } = require('./db/users')
+const { createUser, findUserByEmail, findUserById, updateUserProfile, postByUser, postById, cityById, cityPost } = require('./db/users')
 
 const signupUser = (email, password) => {
   return createUser(email, password)
@@ -47,11 +47,31 @@ const findPost = (postId) => {
     throw error})
 }
 
+const findCity = (city_id) => {
+  return cityById(city_id)
+  .then((city) => {
+    return city[0]
+  })
+  .catch(error => {
+    throw error})
+}
+
+const postsByCity = (city_id) => {
+  return cityPost(city_id)
+  .then((posts) => {
+    return posts
+  })
+  .catch(error => {
+    throw error})
+}
+
 module.exports = {
   signupUser,
   loginUser,
   userProfile,
   updateUser,
   userPost,
-  findPost
+  findPost,
+  findCity,
+  postsByCity
 }

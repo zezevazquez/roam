@@ -8,7 +8,7 @@
     "db:start": "createdb roam && npm run load_schema",
     "db:reset": "dropdb roam && createdb roam && npm run load_schema",
     "db:seed": "cat ./src/models/db/schema/seed.sql | psql roam",
-    "load_schema": "psql -d roam < src/models/db/schema/users.sql"
+    "load_schema": "psql -d roam < src/models/db/schema/schema.sql"
   },
   "repository": {
     "type": "git",
